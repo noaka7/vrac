@@ -45,5 +45,6 @@ private:
 };
 
 std::ostream &operator<<(std::ostream &, const COLOUR_STATE &);
+std::ostream &operator<<(std::ostream &, const COUNTRY &);
 
 #endif /* TRAFFIC_LIGHT_H */

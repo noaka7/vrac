@@ -116,3 +116,19 @@ std::ostream &operator<<(std::ostream &out, const COLOUR_STATE &colour) {
   }
   return out << s;
 }
+
+std::ostream &operator<<(std::ostream &out, const COUNTRY &country) {
+  std::string s;
+  switch (country) {
+  case FRA:
+    s = "FRA";
+    break;
+  case GBR:
+    s = "GBR";
+    break;
+  default:
+    s = "";
+    break;
+  }
+  return out << s;
+}
