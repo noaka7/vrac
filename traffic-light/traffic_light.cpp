@@ -1,6 +1,5 @@
 #include "traffic_light.h"
 #include <iostream>
-using namespace std;
 
 // public
 TrafficLight::TrafficLight() {}
@@ -8,7 +7,7 @@ TrafficLight::TrafficLight(COLOUR_STATE state) {
   try {
     this->set_state(state);
   } catch (const InvalidStateException &e) {
-    cout << "Error message: " << e.what() << endl;
+    std::cout << "Error message: " << e.what() << std::endl;
   }
 }
 TrafficLight::TrafficLight(COUNTRY country) { this->set_country(country); }
@@ -17,7 +16,7 @@ TrafficLight::TrafficLight(COUNTRY country, COLOUR_STATE state) {
   try {
     this->set_state(state);
   } catch (const InvalidStateException &e) {
-    cerr << "Error message: " << e.what() << endl;
+    std::cerr << "Error message: " << e.what() << std::endl;
   }
 }
 inline COUNTRY TrafficLight::get_country() const { return this->country; }
@@ -93,8 +92,8 @@ void TrafficLight::next_gbr() {
   }
 }
 
-ostream &operator<<(ostream &out, const COLOUR_STATE &colour) {
-  string s;
+std::ostream &operator<<(std::ostream &out, const COLOUR_STATE &colour) {
+  std::string s;
   switch (colour) {
   case RED:
     s = "RED";
@@ -121,32 +120,32 @@ ostream &operator<<(ostream &out, const COLOUR_STATE &colour) {
 void test_traffic_light_set_state() {
   TrafficLight light(FRA);
   COLOUR_STATE c;
-  cout << "Test set state. Country: " << light.get_country() << endl;
-  cout << "State: " << light.get_state() << endl;
+  std::cout << "Test set state. Country: " << light.get_country() << std::endl;
+  std::cout << "State: " << light.get_state() << std::endl;
   try {
     c = BLUE;
-    cout << "Try to set invalid state: " << c << endl;
+    std::cout << "Try to set invalid state: " << c << std::endl;
     light.set_state(c);
   } catch (const InvalidStateException &e) {
-    cerr << "Error message: " << e.what() << endl;
+    std::cerr << "Error message: " << e.what() << std::endl;
   }
-  cout << "State: " << light.get_state() << endl;
+  std::cout << "State: " << light.get_state() << std::endl;
   try {
     c = GREEN;
-    cout << "Try to set valid state: " << c << endl;
+    std::cout << "Try to set valid state: " << c << std::endl;
     light.set_state(c);
   } catch (const InvalidStateException &e) {
-    cerr << "Error message: " << e.what() << endl;
+    std::cerr << "Error message: " << e.what() << std::endl;
   }
-  cout << "State: " << light.get_state() << endl;
+  std::cout << "State: " << light.get_state() << std::endl;
 }
 
 int main() {
   for (int i = 0; i < NB_OF_COUNTRY; i++) {
     TrafficLight traffic_light = TrafficLight(static_cast<COUNTRY>(i));
-    cout << "country " << traffic_light.get_country() << endl;
+    std::cout << "country " << traffic_light.get_country() << std::endl;
     for (int j = 0; j <= traffic_light.count(); j++) {
-      cout << traffic_light.get_state() << endl;
+      std::cout << traffic_light.get_state() << std::endl;
       traffic_light.next();
     }
   }
