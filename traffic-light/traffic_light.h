@@ -2,6 +2,7 @@
 #define TRAFFIC_LIGHT_H
 
 #include <exception>
+#include <ostream>
 #include <unordered_set>
 
 typedef enum {
