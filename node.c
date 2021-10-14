@@ -10,14 +10,17 @@ typedef struct Node {
 } Node;
 
 Node *find(Node *node, int v) {
-  if (NULL == node) {
-    return NULL;
-  } else if (v < node->value) {
-    return find(node->left, v);
-  } else if (v > node->value) {
-    return find(node->right, v);
-  } else {
-    return node;
+  Node *n = node;
+  while (1) {
+    if (NULL == n) {
+      return NULL;
+    } else if (v < n->value) {
+      n = n->left;
+    } else if (v > n->value) {
+      n = n->right;
+    } else {
+      return n;
+    }
   }
 }
 
